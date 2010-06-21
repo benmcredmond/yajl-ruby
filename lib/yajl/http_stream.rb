@@ -99,7 +99,7 @@ module Yajl
         end
 
         socket = opts.has_key?(:socket) ? opts.delete(:socket) : TCPSocket.new(uri.host, uri.port)
-        request = "#{method} #{uri.path}#{uri.query ? "?"+uri.query : nil} HTTP/1.1\r\n"
+        request = "#{method} #{uri.to_s} HTTP/1.1\r\n"
         request << "Host: #{uri.host}\r\n"
         request << "Authorization: Basic #{[uri.userinfo].pack('m').strip!}\r\n" unless uri.userinfo.nil?
         request << "User-Agent: #{user_agent}\r\n"
